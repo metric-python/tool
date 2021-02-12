@@ -35,14 +35,15 @@ def session(connection=False):
             return create_engine(url).begin()
 
 
-class Orm:
+class DB:
     def __init__(self):
         """
-        ____ORM class is the ORM class wizard to gather and summon all the models registered and
-        send it to the attribute class____
+        ## **DB**
+        ____This class is served as class declared all the model from the directory, collected and gather into one
+        property class so which class inherit DB can use all the model by calling the attribute____
         """
         self.model = lambda: None
-        for k, v in auto('dbs', 'models', 'dbs/models').items():
+        for k, v in auto('databases', 'models', 'databases/models').items():
             setattr(self.model, v.__name__, v)
 
     def pagination(self, model, page=0, limit=10, *args):
